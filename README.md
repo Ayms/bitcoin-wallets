@@ -7,7 +7,7 @@ If you feel that the information provided here is not understandable by beginers
 
 ##Rationale
 
-Create your bitcoin addresses and wallets by your own and recover them from a phrase/seed you know if you lose them, this eliminates the constant need of wallets backup with the associated risks and this eliminates the risk of losing all of your addresses (then your money)
+Create your bitcoin addresses and wallets by your own and recover them from a phrase (but please read the warning below)/seed you know if you lose them, this eliminates the constant need of wallets backup with the associated risks and this eliminates the risk of losing all of your addresses (then your money)
 
 ##Implementation
 

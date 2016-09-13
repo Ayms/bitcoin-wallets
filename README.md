@@ -138,7 +138,7 @@ Currently importing keys as described above does not remove previous keys, [requ
 
 It does not look necessary if the bitcoin core team implements the above
 
-This repo might then become partially useless but maybe not, still good to have a way to control your keys and what others generate for you, and it would of course be great if we succeed to derive a good seed from information that a human being can easily remember
+This repo might then become partially useless (while still usable for other bitcoin clients) but maybe not, still good to have a way to control your keys and what others generate for you, and it would of course be great if we succeed to derive a good seed from information that a human being can easily remember
 
 ##Other formats
 

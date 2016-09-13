@@ -9,18 +9,16 @@ console.log('wif private key: '+btc_encode(new Buffer('0C28FCA386C7A227600B2FE50
 console.log('private key from wif: '+btc_decode('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ',new Buffer('80','hex')).toString('hex'));
 //0c28fca386c7a227600b2fe50b7cae11ec86d3bf1fbe471be89827e19d72aa1d
 
-*/
-
 /* wallet.dat
 
 # extended private masterkey: xprv9s21ZrQH143K4Wv2JLdfN8td2qVm8qTU7c7hD36gSfsnfNp7AjjgcaGiem5v7KvJnmpee8JeciN8dGvK5r2KZtEt8N4hgnQ3kRP6mQp2JVL
 
 KyruVb9pCVBtxHvof6VrxB7GNk7fmqeSh1wFNwjubyuo4BJLfywz 2016-09-05T11:11:48Z hdseed=1 # addr=1Dk8v9pw3eAC1uXrQd2PhSwAq7pQr3VUs9 hdkeypath=m
 L2qU5rvxgfiRVAd3DedNgHGHxUeBGQEvLMVscR1mffaR5URhjgHy 2016-09-05T11:11:48Z label= # addr=1PLEySkBy6c9LbEZ7V29WiieqdVGGFgyYh hdkeypath=m/0'/0'/0'
+*/
 
-
-var key=getKeyfromExtended('xprv9s21ZrQH143K4Wv2JLdfN8td2qVm8qTU7c7hD36gSfsnfNp7AjjgcaGiem5v7KvJnmpee8JeciN8dGvK5r2KZtEt8N4hgnQ3kRP6mQp2JVL').key;
-var chaincode=getKeyfromExtended('xprv9s21ZrQH143K4Wv2JLdfN8td2qVm8qTU7c7hD36gSfsnfNp7AjjgcaGiem5v7KvJnmpee8JeciN8dGvK5r2KZtEt8N4hgnQ3kRP6mQp2JVL').chainCode;
+//var key=getKeyfromExtended('xprv9s21ZrQH143K4Wv2JLdfN8td2qVm8qTU7c7hD36gSfsnfNp7AjjgcaGiem5v7KvJnmpee8JeciN8dGvK5r2KZtEt8N4hgnQ3kRP6mQp2JVL').key;
+//var chaincode=getKeyfromExtended('xprv9s21ZrQH143K4Wv2JLdfN8td2qVm8qTU7c7hD36gSfsnfNp7AjjgcaGiem5v7KvJnmpee8JeciN8dGvK5r2KZtEt8N4hgnQ3kRP6mQp2JVL').chainCode;
 
 
 console.log(key.toString('hex'));
@@ -31,10 +29,11 @@ console.log(chaincode.toString('hex'));
 console.log(getAddressfromPrivate(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de01','hex'))); //01 ==> compressed public keys
 //1Dk8v9pw3eAC1uXrQd2PhSwAq7pQr3VUs9
 
-var hd=generate_keys_bip32(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex'));
+//var hd=generate_keys_bip32(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex'));
 
-hd.deriveChild(0).deriveChild(0).deriveChild(0);
+//hd.deriveChild(0).deriveChild(0).deriveChild(0);
 
+/*
 master seed chain code: f6dff350d088f62f444db026f5476e2f8ebf1df200da50e3ac2656b093b90dcd
 master seed private key: 0bfe13930513cf7ad70bb34161f758417df200d6393e2301d49aa92a9cb6f777
 master seed public key: 04468067c38b846a4af20520b0aae8dcd344391770d200eaf82cc8f391a44c6845a5db4e062450078091671e0d797315fec4e0227a216ddd186301f117cad895ab
@@ -66,20 +65,21 @@ public key (compact): 02232efbaee1d1d006c2d4b18cf3960b74701900dedeae1c7efddd6ac3
 Extended private key: xprv9ymBKTjmhJHAgYqK7xReE57Cvgj2Nn9k7kf2YEYiUsb5MrMD8eCbokxnmGEM372b3GZcqsRJhpTmuZ3Z6m1N2SSqBMKaUdk8X96fW2dqeXR
 Extended public key: xpub6CkXiyGfXfqTu2unDyxebD3wUiZWnEsbUyadLcxL3D84EegMgBWrMZHGcWFoYcg2vtSyZ9qXKcnZdzdvcQVSkeYEjUtYh1h4pz36h1iKmkx
 bitcoin address: 1PLEySkBy6c9LbEZ7V29WiieqdVGGFgyYh
+*/
 
 
-
-generate_keys_simple('toto');
+//generate_keys_simple('toto');
 /*
 private key: 31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66
 public key (compressed): 0235120e148979e25191400fe64f360db079b917ac367d322e44394db320b26988
 bitcoin address: 12UB9cFE12ZBKZZaFWPxE1p574WxQuLVvY
 private key wif: KxtqjBjoXGF76b5zGgYyRByGEo7cBLNM3Q3gKBmhv5DQRQbYvZkj
+*/
 
-var hd=generate_keys_bip32(new Buffer('000102030405060708090a0b0c0d0e0f','hex')); //test vector BIP32
+//var hd=generate_keys_bip32(new Buffer('000102030405060708090a0b0c0d0e0f','hex')); //test vector BIP32
 
-hd.deriveChild(0);
-
+//hd.deriveChild(0);
+/*
 ------------------------------------ master seed
 master seed chain code: 873dff81c02f525623fd1fe5167eac3a55a049de3d314bb42ee227ffed37d508
 master seed private key: e8f32e723decf4051aefac8e2c93c9c5b214313817cdb01a1494b917c8436b35
@@ -102,19 +102,20 @@ console.log(getKeyfromExtended('xprv9s21ZrQH143K3QTDL4LXw2F7HEK3wJUD2nW2nRk4stbP
 //873dff81c02f525623fd1fe5167eac3a55a049de3d314bb42ee227ffed37d508
 /*
 
-create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex')); //test original wallet - compare wallet.txt and original_wallet_dump.txt
+//create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex')); //test original wallet - compare wallet.txt and original_wallet_dump.txt
 
-create_wallet('My super wallet');
-/*
-var seed=btc_decode('8tbNfXcmPPmnrT3cLGMRoU6p8XGrT',new Buffer('80','hex'));
-seed=seed.slice(0,seed.length-1);
+//create_wallet('My super wallet');
 
-oconsole('seed: '+seed.toString('utf8')); //My super wallet
-*/
-generate_keys_simple('',null,new Buffer('1de2e396a194570339c2289a71d98bdb11c2dc204df06f8e4841028f9179739c','hex'));
+//var seed=btc_decode('8tbNfXcmPPmnrT3cLGMRoU6p8XGrT',new Buffer('80','hex'));
+//seed=seed.slice(0,seed.length-1);
+
+//oconsole('seed: '+seed.toString('utf8')); //My super wallet
+
+//generate_keys_simple('',null,new Buffer('1de2e396a194570339c2289a71d98bdb11c2dc204df06f8e4841028f9179739c','hex'));
 //check btc address 16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY
 /*
 private key: 1de2e396a194570339c2289a71d98bdb11c2dc204df06f8e4841028f9179739c
 public key (compressed): 039e0a50d9f660d5e361ed47bb2d91f96ec360d86f8c377b4e02ed87e4217c4218
 bitcoin address: 16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY
 private key wif: KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq
+*/

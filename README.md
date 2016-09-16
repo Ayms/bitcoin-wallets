@@ -25,13 +25,13 @@ This implementation is mainly following the bitcoin core wallet format but lets 
 
 ##Can we trust BIP32?
 
-There are good signs that we can but of course if all your addresses depends on a tree algorithm then, even if unlikely, the possibility still exists to revert it and discover the seed from your keys, then discover all of your keys
+There are good signs that we can but of course if all your addresses depends on a tree algorithm then, even if unlikely, the possibility still exists to revert it and discover the seed from your keys, then discover all of your keys. Another possibility, probably unlikely also, is to find patterns allowing to fingerprint all the keys generated so finally people can trace you.
 
 Surprisingly from ~32 bytes keys BIP32 ends up with a 78 bytes format to describe them with all the necessary information like indexes, parent to possibly allow to revert the tree
 
 Bitcoin core derives two addresses from a seed and then derives all the other addresses from it, this constitute one branch in the tree and the addresses are represented by m/0/i where i is the number of the key, when 100 addresses are used it generates others following the same principle
 
-bitcoin-walletss do the same but introduces a secret option where the reference to the tree for each key is not indicated in the wallet, neither the master seed and master key (so you should better make sure you will be able to recover it if you use this option)
+bitcoin-wallets do the same but introduces a secret option where the reference to the tree for each key is not indicated in the wallet, neither the master seed and master key (so you should better make sure you will be able to recover it if you use this option)
 
 ##Warning
 

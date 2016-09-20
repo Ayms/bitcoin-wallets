@@ -25,7 +25,7 @@ This implementation is mainly following the bitcoin core wallet format but lets 
 
 ##Can we trust BIP32?
 
-There are good signs that we can but of course if all your addresses depends on a tree algorithm then, even if unlikely, the possibility still exists to revert it and discover the seed from your keys, then discover all of your keys. Another possibility, probably unlikely also, is to find patterns allowing to fingerprint all the keys generated so finally people can trace you.
+There are good signs that we can but of course if all your addresses depend on a tree algorithm then, even if unlikely, the possibility still exists to revert it and discover the seed from your keys, then discover all of your keys. Another possibility, probably unlikely also, is to find patterns allowing to fingerprint all the keys generated so finally people can trace you.
 
 Surprisingly from ~32 bytes keys BIP32 ends up with a 78 bytes format to describe them with all the necessary information like indexes, parent to possibly allow to revert the tree
 
@@ -43,7 +43,7 @@ Do not think you are stronger than the theory and will generate a human phrase w
 
 Other methods exist to remember more easily your seed than a 32 bytes sequence, for example [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) or [Electrum](http://docs.electrum.org/en/latest/seedphrase.html)
 
-But choosing x words among a set of y words in a dictionary to reach the required entropy is still not something a human being will easily remember, it will have to be writen somewhere, so we can question why it can be considered easier than writing a 32 bytes sequence, question of appreciation, people like it apparently
+But choosing x words among a set of y words in a dictionary to reach the required entropy is still not something a human being will easily remember, it will have to be written somewhere, so we can question why it can be considered easier than writing a 32 bytes sequence, question of appreciation, people like it apparently
 
 This is an ongoing TODO but one of the goals here would be to generate a seed from phrases/information that a human being can really remember, more to come...
 
@@ -110,7 +110,7 @@ Just create a folder, copy index.js and install via npm [elliptic](https://githu
 	
 ## Use - Generate wallets
 	
-Output is stored in wallet.txt, all details for the keys is stored in log.txt (recommended to backup somewhere)
+Output is stored in wallet.txt, all details for the keys are stored in log.txt (recommended to backup somewhere)
 
 	create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex')); //see /tests/wallet.txt and compare with original_wallet_dump.txt
 

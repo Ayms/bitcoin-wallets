@@ -46,7 +46,8 @@ var privateKeyderive=function(privateKey,IL) {
 	};
 	bn.iadd(new BN(privateKey));
 	if (bn.cmp(n)>=0) { //check bn docs, probably better way to do this
-		bn=bn.mod(n);
+		//bn=bn.mod(n);
+		bn.isub(n);
 	};
 	if (bn.isZero()) {
 		throw new Error();
@@ -235,7 +236,7 @@ var create_wallet=function(str,secret,nb,version) {
 				} else {
 					priv=tmp.privateKey;
 				};
-				txt=btc_encode(priv,new Buffer('80','hex'))+' '+time+' '+(i?'reserve=1':'label=')+' # addr='+getAddressfromPrivate(priv)+(secret?"":" hdkeypath=m/0'/0'/'"+i+"'");
+				txt=btc_encode(priv,new Buffer('80','hex'))+' '+time+' '+(i?'reserve=1':'label=')+' # addr='+getAddressfromPrivate(priv)+(secret?"":" hdkeypath=m/0'/0'/"+i+"'");
 				stream.write(txt+CRLF);
 			};
 			stream.end();

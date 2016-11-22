@@ -154,7 +154,7 @@ MIT
 
 ## Related projects :
 
-* [Ayms/bitcoin-wallets](https://github.com/Ayms/zcash-wallets)
+* [Ayms/zcash-wallets](https://github.com/Ayms/zcash-wallets)
 * [Ayms/bittorrent-nodeid](https://github.com/Ayms/bittorrent-nodeid)
 * [Ayms/torrent-live](https://github.com/Ayms/torrent-live)
 * [Ayms/node-Tor](https://github.com/Ayms/node-Tor)

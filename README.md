@@ -1,7 +1,7 @@
 bitcoin-wallets
 ===
 
-Bitcoin and Zcash wallets made simple, javascript implementation of [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) Bitcoin hierarchical deterministic keys
+Bitcoin and [Zcash](https://github.com/Ayms/zcash-wallets) wallets made simple, javascript implementation of [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) Bitcoin hierarchical deterministic keys
 
 ##Rationale
 

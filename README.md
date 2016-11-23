@@ -3,8 +3,6 @@ bitcoin-wallets
 
 Bitcoin and Zcash wallets made simple, javascript implementation of [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) Bitcoin hierarchical deterministic keys
 
-If you feel that the information provided here is not understandable by beginers/non experts, please advise
-
 ##Rationale
 
 Create your bitcoin addresses and wallets by your own and recover them from a phrase (but please read the warning below)/seed you know if you lose them, this eliminates the constant need of wallets backup with the associated risks and this eliminates the risk of losing all of your addresses (then your money)
@@ -19,7 +17,7 @@ There are quasi no standards for bitcoin wallets, every bitcoin client proposes 
 
 [Bitcoin core](https://github.com/bitcoin/bitcoin) has recently implemented as the default partially [BIP32](https://github.com/bitcoin/bitcoin/pull/8035) which generates first 100 addresses from a seed chosen by the software
 
-We don't think it's necessarily a good idea to trust a software, even open source, to choose the main seed for you knowing that all of your keys depend on it and are generated from this master seed (which is typically a 32 bytes sequence)
+We don't think that it's necessarily a good idea to trust a software, even open source, to choose the main seed for you knowing that all of your keys depend on it and are generated from this master seed (which is typically a 32 bytes sequence)
 
 This implementation is mainly following the bitcoin core wallet format but lets you decide for the seed, you can reuse the information generated for other wallets, you can select from the addresses generated which ones you will use and break the tree dependencies
 
@@ -29,7 +27,7 @@ There are good signs that we can but of course if all your addresses depend on a
 
 Surprisingly from ~32 bytes keys BIP32 ends up with a 78 bytes format to describe them with all the necessary information like indexes, parent to possibly allow to revert the tree
 
-Bitcoin core derives two addresses from a seed and then derives all the other addresses from it, this constitute one branch in the tree and the addresses are represented by m/0/i where i is the number of the key, when 100 addresses are used it generates others following the same principle
+Bitcoin core derives two addresses from a seed and then derives all the other addresses from it, this constitute one branch in the tree and the (hardened) addresses are represented by m/0/i where i is the number of the key, when 100 addresses are used it generates others following the same principle
 
 bitcoin-wallets do the same but introduces a secret option where the reference to the tree for each key is not indicated in the wallet, neither the master seed and master key (so you should better make sure you will be able to recover it if you use this option)
 

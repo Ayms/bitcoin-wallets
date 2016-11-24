@@ -313,8 +313,6 @@ var create_wallet=function(str,secret,nb,version) {
 	});
 };
 
-create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex'),null,null,'zcash');
-
 module.exports.generate_keys_simple=generate_keys_simple;
 module.exports.generate_keys_bip32=generate_keys_bip32;
 module.exports.create_wallet=create_wallet;

@@ -21,6 +21,7 @@ var priv_key_p=new Buffer('80','hex');
 var zcash_z=new Buffer('169a','hex');
 var zcash_spending_key=new Buffer('ab36','hex');
 var ZCASH_VERSIONS=BITCOIN_VERSIONS; //take same value than bitcoin
+var SUPER_MAGIC=1893; //Bug #1893
 
 var display=function(hd,version,bool) {
 	var seed='';
@@ -272,7 +273,7 @@ var create_wallet=function(str,secret,nb,version) {
 				stream.write(txt+CRLF);
 			};
 			if (version===zcash_t1) {
-				hdz=hd.deriveChild(0,version).deriveChild(1,version); //TBD for z-addresses branch hardened+1, or random > hardened ???
+				hdz=hd.deriveChild(SUPER_MAGIC,version).deriveChild(0,version);
 			};
 			hd=hd.deriveChild(0,version).deriveChild(0,version);
 			for (var i=0;i<nb;i++) {
@@ -286,8 +287,12 @@ var create_wallet=function(str,secret,nb,version) {
 				var sk_enc;
 				for (var i=0;i<nb;i++) {
 					tmp=hdz.deriveChild(i,version);
+					/*
 					tmp.ask=tmp.privateKey;
 					tmp.ask[0] &=0x0f; //spending key
+					*/
+					tmp.ask=reverse(FormatPrivate(PRFx(tmp.privateKey,1)));
+					tmp.ask=new Buffer(ecdh.keyFromPrivate(tmp.ask).getPrivate('hex'),'hex');//spending key
 					priv=new Buffer(tmp.ask.length);
 					tmp.ask.copy(priv);
 					tmp.apk=reverse(PRFx(priv,0)); //paying key
@@ -298,7 +303,7 @@ var create_wallet=function(str,secret,nb,version) {
 					tmp.ask_a=btc_encode(tmp.ask,zcash_spending_key);
 					tmp.z_address=btc_encode(tmp.z,zcash_z);
 					display_z(tmp);
-					txt=tmp.ask_a+' '+time+' '+(i?'reserve=1':'label=')+' # zaddr='+tmp.z_address+(secret?"":" hdkeypath=m/0'/1'/"+i+"'");
+					txt='# '+tmp.ask_a+' '+time+' # zaddr='+tmp.z_address+(secret?"":" hdkeypath=m/'"+SUPER_MAGIC+"'/1'/"+i+"'");
 					stream.write(txt+CRLF);
 				};
 			};
@@ -307,6 +312,8 @@ var create_wallet=function(str,secret,nb,version) {
 		});
 	});
 };
+
+create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex'),null,null,'zcash');
 
 module.exports.generate_keys_simple=generate_keys_simple;
 module.exports.generate_keys_bip32=generate_keys_bip32;

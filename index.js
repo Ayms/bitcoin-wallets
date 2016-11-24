@@ -303,7 +303,7 @@ var create_wallet=function(str,secret,nb,version) {
 					tmp.ask_a=btc_encode(tmp.ask,zcash_spending_key);
 					tmp.z_address=btc_encode(tmp.z,zcash_z);
 					display_z(tmp);
-					txt='# '+tmp.ask_a+' '+time+' # zaddr='+tmp.z_address+(secret?"":" hdkeypath=m/'"+SUPER_MAGIC+"'/1'/"+i+"'");
+					txt='# '+tmp.ask_a+' '+time+' # zaddr='+tmp.z_address+(secret?"":(" hdkeypath=m/'"+SUPER_MAGIC+"'/0'/"+i+"'"));
 					stream.write(txt+CRLF);
 				};
 			};

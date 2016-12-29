@@ -41,6 +41,7 @@ var display=function(hd,version,bool) {
 var display_z=function(hd) {
 	console.log('------------------------------------ '+('depth '+hd.depth+' index hardened '+(hd.index-HARDENED_OFFSET)));
 	console.log('spending key: '+hd.ask.toString('hex'));
+	console.log('viewing key: '+hd.sk_enc.toString('hex'));
 	console.log('paying key: '+hd.apk.toString('hex'));
 	console.log('transmission key: '+hd.pk_enc.toString('hex'));
 	console.log('spending key address: '+hd.ask_a);
@@ -284,7 +285,6 @@ var create_wallet=function(str,secret,nb,version) {
 			};
 			if (hdz) {
 				stream.write(CRLF+'# Zkeys'+CRLF);
-				var sk_enc;
 				for (var i=0;i<nb;i++) {
 					tmp=hdz.deriveChild(i,version);
 					/*
@@ -296,8 +296,8 @@ var create_wallet=function(str,secret,nb,version) {
 					priv=new Buffer(tmp.ask.length);
 					tmp.ask.copy(priv);
 					tmp.apk=reverse(PRFx(priv,0)); //paying key
-					sk_enc=reverse(FormatPrivate(PRFx(priv,1)));
-					tmp.pk_enc=ecdh.keyFromPrivate(sk_enc);
+					tmp.sk_enc=reverse(FormatPrivate(PRFx(priv,1)));//viewing key
+					tmp.pk_enc=ecdh.keyFromPrivate(tmp.sk_enc);
 					tmp.pk_enc=new Buffer(tmp.pk_enc.getPublic(true,'arr'),'hex');//transmission key
 					tmp.z=reverse(Buffer.concat([tmp.pk_enc,tmp.apk]));
 					tmp.ask_a=btc_encode(tmp.ask,zcash_spending_key);

@@ -140,6 +140,8 @@ Just create a folder, copy index.js and install via npm [elliptic](https://githu
 	
 Output is stored in wallet.txt, all details for the keys are stored in log.txt (recommended to backup somewhere)
 
+	Bitcoin Core
+
 	create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex')); //see /tests/wallet.txt and compare with original_wallet_dump.txt
 
 	create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex'),true); //see /tests/wallet_secret.txt
@@ -147,6 +149,19 @@ Output is stored in wallet.txt, all details for the keys are stored in log.txt (
 	create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex'),null or true,1000); //generates 1000 keys, default is 100
 	
 	create_wallet('My super wallet');//see /tests/my_super_wallet.txt - Again, never use this for now
+	
+	Bitcoin Cash
+	
+	Generate the same wallet as Bitcoin Core's one above for Bitcoin Cash
+	
+	create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex'),null or true, null or number, new Buffer('1c','hex'))
+	
+	Bitcoin Gold
+	
+	Generate the same wallet as Bitcoin Cores's one above for Bitcoin Gold
+	
+	create_wallet(new Buffer('4ecf2e71d567072fe2f9cda40873afcaae4224e3f249018621a90dd43e88f8de','hex'),null or true, null or number, new Buffer('26','hex'))
+	
 	
 ## Use - Convert bitcoin addresses
 

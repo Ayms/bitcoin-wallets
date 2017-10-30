@@ -9,6 +9,10 @@ Create your bitcoin addresses and wallets by your own and recover them from a ph
 
 Convert your original bitcoin address to a bitcoin fork address (Bitcoin Cash, Bitcoin Gold, etc)
 
+## Conversion
+
+Given the increasing number of forks that are occurring this module allows non expert users to easily match addresses from their original wallet to a bitcoin fork address (Bitcoin Cash, Bitcoin Gold, etc), so you don't need to regenerate one wallet for each fork
+
 ## Implementation
 
 This module is using [elliptic](https://github.com/indutny/elliptic) and [bs58](https://github.com/cryptocoinjs/bs58), the code is inspired from [hdkey](https://github.com/cryptocoinjs/hdkey)
@@ -22,10 +26,6 @@ There are quasi no standards for bitcoin wallets, every bitcoin client proposes 
 We don't think that it's necessarily a good idea to trust a software, even open source, to choose the main seed for you knowing that all of your keys depend on it and are generated from this master seed (which is typically a 32 bytes sequence)
 
 This implementation is mainly following the bitcoin core wallet format but lets you decide for the seed, you can reuse the information generated for other wallets, you can select from the addresses generated which ones you will use and break the tree dependencies
-
-## Conversion
-
-Given the increasing number of forks that are occurring this module allows non expert users to easily match addresses from their original wallet to a bitcoin fork address (Bitcoin Cash, Bitcoin Gold, etc), so you don't need to regenerate one wallet for each fork
 
 ## Can we trust BIP32?
 
@@ -191,7 +191,7 @@ Currently importing keys as described above does not remove previous keys, [requ
 
 The default bitcoin client version is bitcoin core (then compressed format is used for public keys and address derivation, 01 is added to private keys representation), please feel free to post bug/PR and/or contact us for other versions
 
-##Tools
+## Tools
 
 See various uses and tools in tests/tests.js (a bit messy, yes, but useful)
 

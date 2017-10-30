@@ -160,6 +160,13 @@ var serialize=function(hd,version) {
 	return buffer;
 };
 
+var convert=function(privateWIF,inversion,outversion) { //private key WIF string format in wallet.dat
+	var privateKey=btc_decode(privateWIF,new Buffer('80','hex'));
+	var inaddress=getAddressfromPrivate(privateKey,inversion);
+	var outaddress=getAddressfromPrivate(privateKey,outversion);
+	console.log('BTC address '+inaddress+' converted to '+outaddress);
+};
+
 var deriveChild=function(index,version) {
 	//var isHardened=index>=HARDENED_OFFSET;
 	var hd={};
@@ -316,3 +323,4 @@ var create_wallet=function(str,secret,nb,version) {
 module.exports.generate_keys_simple=generate_keys_simple;
 module.exports.generate_keys_bip32=generate_keys_bip32;
 module.exports.create_wallet=create_wallet;
+module.exports.convert=convert;

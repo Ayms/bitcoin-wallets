@@ -1,11 +1,13 @@
 bitcoin-wallets
 ===
 
-Bitcoin and [Zcash](https://github.com/Ayms/zcash-wallets) wallets made simple, javascript implementation of [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) Bitcoin hierarchical deterministic keys
+Bitcoin (BTC, BCH, BTG, etc) and [Zcash](https://github.com/Ayms/zcash-wallets) wallets made simple, javascript implementation of [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) Bitcoin hierarchical deterministic keys
 
 ## Rationale
 
 Create your bitcoin addresses and wallets by your own and recover them from a phrase (but please read the warning below)/seed you know if you lose them, this eliminates the constant need of wallets backup with the associated risks and this eliminates the risk of losing all of your addresses (then your money)
+
+Convert your original bitcoin address to a bitcoin fork address (Bitcoin Cash, Bitcoin Gold, etc)
 
 ## Implementation
 
@@ -21,6 +23,10 @@ We don't think that it's necessarily a good idea to trust a software, even open 
 
 This implementation is mainly following the bitcoin core wallet format but lets you decide for the seed, you can reuse the information generated for other wallets, you can select from the addresses generated which ones you will use and break the tree dependencies
 
+## Conversion
+
+Given the increasing number of forks that are occurring this module allows non expert users to easily match addresses from their original wallet to a bitcoin fork address (Bitcoin Cash, Bitcoin Gold, etc), so you don't need to regenerate one wallet for each fork
+
 ## Can we trust BIP32?
 
 There are good signs that we can but of course if all your addresses depend on a tree algorithm then, even if unlikely, the possibility still exists to revert it and discover the seed from your keys, then discover all of your keys. Another possibility, probably unlikely also, is to find patterns allowing to fingerprint all the keys generated so finally people can trace you.
@@ -33,7 +39,7 @@ bitcoin-wallets do the same but introduces a secret option where the reference t
 
 ## Warning
 
-For now you should not use this module if you are not an expert to choose a seed with enough entropy (ie 128 bits) and you should not use the possibility to derive keys from a phrase
+For now you should not use this module (except for conversion purposes) if you are not an expert to choose a seed with enough entropy (ie 128 bits) and you should not use the possibility to derive keys from a phrase
 
 Indeed, human phrases are known to be predictable with considerably less (ie ridiculous) entropy than a seed generated with a prng
 
@@ -59,11 +65,35 @@ Just create a folder, copy index.js and install via npm [elliptic](https://githu
 	private key wif: KxtqjBjoXGF76b5zGgYyRByGEo7cBLNM3Q3gKBmhv5DQRQbYvZkj
 	*/
 	
+	Bitcoin Core (0x00 p2pkh, 0x05 p2sh) - default then version can be set to null
+	
 	generate_keys_simple('',null,new Buffer('1de2e396a194570339c2289a71d98bdb11c2dc204df06f8e4841028f9179739c','hex')); //the private key is the buffer you pass
 	/*
 	private key: 1de2e396a194570339c2289a71d98bdb11c2dc204df06f8e4841028f9179739c
 	public key (compressed): 039e0a50d9f660d5e361ed47bb2d91f96ec360d86f8c377b4e02ed87e4217c4218
 	bitcoin address: 16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY
+	private key wif: KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq
+	*/
+	
+	Bitcoin Cash (0x1c p2pkh, 0x28 p2sh)
+	
+	generate_keys_simple('',new Buffer('1c','hex'),new Buffer('1de2e396a194570339c2289a71d98bdb11c2dc204df06f8e4841028f9179739c','hex')); //the private key is the buffer you pass
+	
+	/*
+	private key: 1de2e396a194570339c2289a71d98bdb11c2dc204df06f8e4841028f9179739c
+	public key (compressed): 039e0a50d9f660d5e361ed47bb2d91f96ec360d86f8c377b4e02ed87e4217c4218
+	bitcoin cash address: CNNj75JfhZaZbBUj3TsXbtwtdEsUGaQ6qi
+	private key wif: KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq
+	*/
+	
+	Bitcoin Gold (0x26 p2pkh, 0x17 p2sh)
+	
+	generate_keys_simple('',new Buffer('26','hex'),new Buffer('1de2e396a194570339c2289a71d98bdb11c2dc204df06f8e4841028f9179739c','hex')); //the private key is the buffer you pass
+	
+	/*
+	private key: 1de2e396a194570339c2289a71d98bdb11c2dc204df06f8e4841028f9179739c
+	public key (compressed): 039e0a50d9f660d5e361ed47bb2d91f96ec360d86f8c377b4e02ed87e4217c4218
+	bitcoin gold address: GPkkxAHYoNDKmWsbHfCiT9fkvHSuShfFcc
 	private key wif: KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq
 	*/
 
@@ -118,6 +148,31 @@ Output is stored in wallet.txt, all details for the keys are stored in log.txt (
 	
 	create_wallet('My super wallet');//see /tests/my_super_wallet.txt - Again, never use this for now
 	
+## Use - Convert bitcoin addresses
+
+Convert an address from your original bitcoin wallet (private key in WIF format) to a bitcoin fork address
+
+	Bitcoin Cash
+	
+	convert('KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq',new Buffer('00','hex'),new Buffer('1c','hex'));
+	
+	BTC address 16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY converted to CNNj75JfhZaZbBUj3TsXbtwtdEsUGaQ6qi
+	
+	Bitcoin Gold
+	
+	convert('KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq',new Buffer('00','hex'),new Buffer('26','hex'));
+	
+	BTC address 16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY converted to GPkkxAHYoNDKmWsbHfCiT9fkvHSuShfFcc
+	
+	Bitcoin Cash to Bitcoin Gold
+	
+	convert('KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq',new Buffer('1c','hex'),new Buffer('26','hex'));
+	
+	BTC address CNNj75JfhZaZbBUj3TsXbtwtdEsUGaQ6qi converted to GPkkxAHYoNDKmWsbHfCiT9fkvHSuShfFcc
+	
+	
+The input is your private key in WIF format (KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq here) in your wallet.dat dump, check anyway that the convert output gives the right corresponding original bitcoin address (16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY in the above example)
+	
 ## Wallets import/export
 
 In bitcoin core, open the debug console (Help/Debug console)
@@ -131,12 +186,6 @@ To import your bitcoin-wallets, put your wallet.txt in the bitcoin core root dir
 Again you can choose among the keys generated by bitcoin-wallets those that you want to put in your final wallet.txt (that's why you should better keep log.txt if you want later to reconciliate the keys chosen with the tree)
 
 Currently importing keys as described above does not remove previous keys, [request](https://github.com/bitcoin/bitcoin/issues/8684) made to the bitcoin core team which is apparently implementing too a way to create keys from a user chosen private key/seed - watch [Wallet - add option for a custom extended master privat key (xpriv)](https://github.com/bitcoin/bitcoin/pull/8735)
-
-## Implement wallet.dat?
-
-It does not look necessary if the bitcoin core team implements the above
-
-This repo might then become partially useless (while still usable for other bitcoin clients) but maybe not, still good to have a way to control your keys and what others generate for you, and it would of course be great if we succeed to derive a good seed from information that a human being can easily remember
 
 ## Other formats
 

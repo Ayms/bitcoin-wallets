@@ -160,11 +160,19 @@ var serialize=function(hd,version) {
 	return buffer;
 };
 
-var convert=function(privateWIF,inversion,outversion) { //private key WIF string format in wallet.dat
+/*
+var convert_p=function(privateWIF,inversion,outversion) { //private key WIF string format in wallet.dat
 	var privateKey=btc_decode(privateWIF,new Buffer('80','hex'));
 	var inaddress=getAddressfromPrivate(privateKey,inversion);
 	var outaddress=getAddressfromPrivate(privateKey,outversion);
 	console.log('BTC address '+inaddress+' converted to '+outaddress);
+};
+*/
+
+var convert=function(key,inversion,outversion) {
+	var p2pkh=btc_decode(key,inversion);
+	var outaddress=btc_encode(p2pkh,outversion);
+	console.log('Address '+key+' converted to '+outaddress);
 };
 
 var deriveChild=function(index,version) {

@@ -7,7 +7,7 @@ Bitcoin (BTC, BCH, BTG, etc) and [Zcash](https://github.com/Ayms/zcash-wallets) 
 
 Create your bitcoin addresses and wallets by your own and recover them from a phrase (but please read the warning below)/seed you know if you lose them, this eliminates the constant need of wallets backup with the associated risks and this eliminates the risk of losing all of your addresses (then your money)
 
-Convert your original bitcoin address to a bitcoin fork address (Bitcoin Cash, Bitcoin Gold, etc)
+Convert your original bitcoin address to a bitcoin fork address (Bitcoin Cash, Bitcoin Gold, etc) or any coin address to another one
 
 ## Conversion
 
@@ -165,28 +165,25 @@ Output is stored in wallet.txt, all details for the keys are stored in log.txt (
 	
 ## Use - Convert bitcoin addresses
 
-Convert an address from your original bitcoin wallet (private key in WIF format) to a bitcoin fork address
+Convert an address from one network to another one - convert(address,inversion,outversion)
 
 	Bitcoin Cash
 	
-	convert('KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq',new Buffer('00','hex'),new Buffer('1c','hex'));
+	convert('16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY',new Buffer('00','hex'),new Buffer('1c','hex'));
 	
-	BTC address 16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY converted to CNNj75JfhZaZbBUj3TsXbtwtdEsUGaQ6qi
+	Address 16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY converted to CNNj75JfhZaZbBUj3TsXbtwtdEsUGaQ6qi
 	
 	Bitcoin Gold
 	
-	convert('KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq',new Buffer('00','hex'),new Buffer('26','hex'));
+	convert('16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY',new Buffer('00','hex'),new Buffer('26','hex'));
 	
-	BTC address 16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY converted to GPkkxAHYoNDKmWsbHfCiT9fkvHSuShfFcc
+	Address 16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY converted to GPkkxAHYoNDKmWsbHfCiT9fkvHSuShfFcc
 	
 	Bitcoin Cash to Bitcoin Gold
 	
-	convert('KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq',new Buffer('1c','hex'),new Buffer('26','hex'));
+	convert('CNNj75JfhZaZbBUj3TsXbtwtdEsUGaQ6qi',new Buffer('1c','hex'),new Buffer('26','hex'));
 	
-	BTC address CNNj75JfhZaZbBUj3TsXbtwtdEsUGaQ6qi converted to GPkkxAHYoNDKmWsbHfCiT9fkvHSuShfFcc
-	
-	
-The input is your private key in WIF format (KxDohMDu4iQ3GYMJGakyfCtcHtuGjqfcDLR2oUYEbNpkGJeTYmGq here) in your wallet.dat dump, check anyway that the convert output gives the right corresponding original bitcoin address (16uqY2xbpWc2h3aJMiYc2PKs17f4NyQ8GY in the above example)
+	Address CNNj75JfhZaZbBUj3TsXbtwtdEsUGaQ6qi converted to GPkkxAHYoNDKmWsbHfCiT9fkvHSuShfFcc
 	
 ## Wallets import/export
 

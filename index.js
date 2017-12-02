@@ -160,14 +160,13 @@ var serialize=function(hd,version) {
 	return buffer;
 };
 
-/*
+
 var convert_p=function(privateWIF,inversion,outversion) { //private key WIF string format in wallet.dat
 	var privateKey=btc_decode(privateWIF,new Buffer('80','hex'));
 	var inaddress=getAddressfromPrivate(privateKey,inversion);
 	var outaddress=getAddressfromPrivate(privateKey,outversion);
 	console.log('BTC address '+inaddress+' converted to '+outaddress);
 };
-*/
 
 var convert=function(key,inversion,outversion) {
 	var p2pkh=btc_decode(key,inversion);
@@ -196,7 +195,7 @@ var deriveChild=function(index,version) {
 			hd.privateKey=privateKeyderive(this.privateKey,IL);
 			hd.publicKey=new Buffer(ec.keyFromPrivate(hd.privateKey).getPublic(true,'arr'),'hex');
 			hd.publicKeyl=new Buffer(ec.keyFromPrivate(hd.privateKey).getPublic('arr'),'hex');
-			hd.address=btc_encode(hash_160(hd.publicKey),version); //default is supposed to be compressed keys
+			hd.address=btc_encode(hash_160(hd.publicKey),(version||this.version)); //default is supposed to be compressed keys
 		} catch (err) {
 			return;
 		};
@@ -212,6 +211,7 @@ var deriveChild=function(index,version) {
 	hd.depth=this.depth+1;
 	hd.parentFingerprint=this.fingerprint;
 	hd.index=index+HARDENED_OFFSET;
+	hd.version=version||this.version;
 	//hd.deriveChild=()=>{deriveChild};
 	hd.deriveChild=deriveChild.bind(hd);
 	display(hd,version);
@@ -253,6 +253,7 @@ var generate_keys_bip32=function(str,version) {
 	hd.publicKey=new Buffer(ec.keyFromPrivate(hd.privateKey).getPublic(true,'arr'),'hex'); //compact 33 bytes
 	hd.address=btc_encode(hash_160(hd.publicKey),version); //default is supposed to be compressed keys
 	hd.fingerprint=hash_160(hd.publicKey).slice(0,4).readUInt32BE(0);
+	hd.version=version;
 	hd.index=0;
 	hd.depth=0;
 	display(hd,version,true);

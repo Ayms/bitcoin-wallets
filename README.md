@@ -3,6 +3,10 @@ bitcoin-wallets
 
 Bitcoin (BTC, BCH, BTG, etc) and [Zcash](https://github.com/Ayms/zcash-wallets) wallets made simple, javascript implementation of [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) Bitcoin hierarchical deterministic keys
 
+##History
+
+<b>Please note that this module is now deprecated, please see [bitcoin-transactions](https://github.com/Ayms/bitcoin-transactions) since it has been merged there</b>
+
 ## Rationale
 
 Create your bitcoin addresses and wallets by your own and recover them from a phrase (but please read the warning below)/seed you know if you lose them, this eliminates the constant need of wallets backup with the associated risks and this eliminates the risk of losing all of your addresses (then your money)

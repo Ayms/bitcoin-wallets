@@ -3,7 +3,7 @@ bitcoin-wallets
 
 Bitcoin (BTC, BCH, BTG, etc) and [Zcash](https://github.com/Ayms/zcash-wallets) wallets made simple, javascript implementation of [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) Bitcoin hierarchical deterministic keys
 
-##History
+## History
 
 <b>Please note that this module is now deprecated, please see [bitcoin-transactions](https://github.com/Ayms/bitcoin-transactions) since it has been merged there</b>
 
